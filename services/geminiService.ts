@@ -1,6 +1,6 @@
 import { GoogleGenAI } from "@google/genai";
-import { NFL_FILM_ROOM_SYSTEM_INSTRUCTION, ANALYSIS_SCHEMA } from '../constants';
-import type { AnalysisResponse, AnalysisResult } from '../types';
+import { FOOTBALL_FILM_ROOM_SYSTEM_INSTRUCTION, ANALYSIS_SCHEMA } from '../constants';
+import type { AnalysisResponse, AnalysisResult, PlayAnalysis } from '../types';
 
 if (!process.env.API_KEY) {
   throw new Error("API_KEY environment variable not set");
@@ -8,7 +8,25 @@ if (!process.env.API_KEY) {
 
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
+/**
+ * Extracts the YouTube video ID from a URL.
+ * @param url The YouTube URL.
+ * @returns The video ID or null if not found.
+ */
+function extractYouTubeVideoId(url: string): string | null {
+  // Regex to find video ID from various YouTube URL formats.
+  const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+  const match = url.match(regex);
+  return match ? match[1] : null;
+}
+
+
 export async function analyzeVideo(youtubeUrl: string): Promise<AnalysisResult> {
+  const originalVideoId = extractYouTubeVideoId(youtubeUrl);
+  if (!originalVideoId) {
+    throw new Error("Invalid YouTube URL provided. Could not extract video ID.");
+  }
+
   try {
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
@@ -23,7 +41,7 @@ export async function analyzeVideo(youtubeUrl: string): Promise<AnalysisResult> 
         ],
       },
       config: {
-        systemInstruction: NFL_FILM_ROOM_SYSTEM_INSTRUCTION,
+        systemInstruction: FOOTBALL_FILM_ROOM_SYSTEM_INSTRUCTION,
         responseMimeType: 'application/json',
         responseSchema: ANALYSIS_SCHEMA,
       },
@@ -40,7 +58,35 @@ export async function analyzeVideo(youtubeUrl: string): Promise<AnalysisResult> 
       throw new Error("Invalid response structure from API.");
     }
 
-    return parsedResponse.plays;
+    // Validate and correct video IDs in timestamped links
+    const validatedPlays: AnalysisResult = parsedResponse.plays.map((play: PlayAnalysis) => {
+      const responseVideoId = extractYouTubeVideoId(play.timestampedLink);
+
+      // If the video ID in the response is missing or doesn't match, correct it.
+      if (!responseVideoId || responseVideoId !== originalVideoId) {
+        let correctedLink = `https://www.youtube.com/watch?v=${originalVideoId}`;
+        try {
+          // Try to preserve the timestamp if it exists
+          const responseUrl = new URL(play.timestampedLink);
+          const timestamp = responseUrl.searchParams.get('t');
+          if (timestamp) {
+            correctedLink += `&t=${timestamp}`;
+          }
+        } catch (e) {
+          // If the URL is malformed, we can't get the timestamp, but we can still correct the base URL.
+          console.warn("Could not parse timestamp from model response URL:", play.timestampedLink);
+        }
+        
+        return {
+          ...play,
+          timestampedLink: correctedLink,
+        };
+      }
+
+      return play;
+    });
+
+    return validatedPlays;
   } catch (error) {
     console.error("Error calling Gemini API or parsing response:", error);
     if (error instanceof Error) {

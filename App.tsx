@@ -50,7 +50,7 @@ const App: React.FC = () => {
         <div className="flex items-center space-x-3">
           <LogoIcon />
           <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
-            NFL Film Room <span className="text-cyan-400">Analyst</span>
+            Football Film Room <span className="text-cyan-400">Analyst</span>
           </h1>
         </div>
          {analysis && (

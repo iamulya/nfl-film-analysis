@@ -20,7 +20,7 @@ const UrlInputForm: React.FC<UrlInputFormProps> = ({ onSubmit, error }) => {
         Enter the Gridiron
       </h2>
       <p className="text-lg text-gray-400 mb-8">
-        Provide an NFL game's YouTube URL and let Coach JJ break down the film.
+        Provide a Football game's YouTube URL and let Coach JJ break down the film.
       </p>
       <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
         <input
