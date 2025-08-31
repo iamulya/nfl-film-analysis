@@ -1,6 +1,5 @@
-
 import { GoogleGenAI } from "@google/genai";
-import { NFL_FILM_ROOM_PROMPT, ANALYSIS_SCHEMA } from '../constants';
+import { NFL_FILM_ROOM_SYSTEM_INSTRUCTION, ANALYSIS_SCHEMA } from '../constants';
 import type { AnalysisResponse, AnalysisResult } from '../types';
 
 if (!process.env.API_KEY) {
@@ -10,13 +9,21 @@ if (!process.env.API_KEY) {
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export async function analyzeVideo(youtubeUrl: string): Promise<AnalysisResult> {
-  const prompt = NFL_FILM_ROOM_PROMPT.replace('{YOUTUBE_URL}', youtubeUrl);
-
   try {
     const response = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
-      contents: prompt,
+      contents: {
+        parts: [
+          {
+            fileData: {
+              mimeType: 'video/youtube',
+              fileUri: youtubeUrl,
+            },
+          },
+        ],
+      },
       config: {
+        systemInstruction: NFL_FILM_ROOM_SYSTEM_INSTRUCTION,
         responseMimeType: 'application/json',
         responseSchema: ANALYSIS_SCHEMA,
       },

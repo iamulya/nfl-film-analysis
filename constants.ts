@@ -1,7 +1,6 @@
-
 import { Type } from "@google/genai";
 
-export const NFL_FILM_ROOM_PROMPT = `
+export const NFL_FILM_ROOM_SYSTEM_INSTRUCTION = `
 ### **The Ultimate NFL Film Room Analyst Prompt **
 
 **Persona & Role:**
@@ -14,7 +13,7 @@ Your primary task is to watch the provided NFL YouTube video and generate a deta
 
 **Instructions & Workflow:**
 
-1.  Thoroughly analyze the entire video content from the **YouTube URL** provided: {YOUTUBE_URL}.
+1.  Thoroughly analyze the entire video content from the **YouTube URL** provided in the user's prompt.
 2.  Identify a minimum of **8 significant plays**. A significant play is defined as a touchdown, a turnover, a sack, a key 4th down conversion/stop, or any play that demonstrates exceptional or flawed strategy and execution.
 3.  For **each** of the identified plays, you must structure your analysis using the precise, multi-part template defined in the JSON schema.
 4.  To create the **Timestamped Link**, take the EXACT YouTube URL provided by the user and append \`&t=[#]s\`, where \`[#]\` is the total number of seconds corresponding to the play's start time (e.g., a timestamp of 02:15 becomes \`&t=135s\`).
@@ -23,6 +22,11 @@ Your primary task is to watch the provided NFL YouTube video and generate a deta
 **Output Format:**
 
 Return ONLY a single, valid JSON object that conforms to the provided JSON schema. Do not include any markdown formatting or any text outside of the JSON object.
+---
+
+**Example of a final user prompt:**
+
+https://www.youtube.com/watch?v=....
 `;
 
 export const ANALYSIS_SCHEMA = {
