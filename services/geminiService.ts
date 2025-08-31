@@ -61,32 +61,37 @@ export async function analyzeVideo(youtubeUrl: string): Promise<AnalysisResult> 
       throw new Error("Invalid response structure from API.");
     }
 
-    // Validate and correct video IDs in timestamped links
-    const validatedPlays: AnalysisResult = parsedResponse.plays.map((play: PlayAnalysis) => {
-      const responseVideoId = extractYouTubeVideoId(play.timestampedLink);
+    // Validate and normalize the API response data
+    const validatedPlays: AnalysisResult = parsedResponse.plays.map((play: any): PlayAnalysis => {
+      const correctedPlay = { ...play };
 
-      // If the video ID in the response is missing or doesn't match, correct it.
+      // 1. Validate and correct timestampedLink
+      const responseVideoId = extractYouTubeVideoId(correctedPlay.timestampedLink);
       if (!responseVideoId || responseVideoId !== originalVideoId) {
         let correctedLink = `https://www.youtube.com/watch?v=${originalVideoId}`;
         try {
-          // Try to preserve the timestamp if it exists
-          const responseUrl = new URL(play.timestampedLink);
+          const responseUrl = new URL(correctedPlay.timestampedLink);
           const timestamp = responseUrl.searchParams.get('t');
           if (timestamp) {
             correctedLink += `&t=${timestamp}`;
           }
         } catch (e) {
-          // If the URL is malformed, we can't get the timestamp, but we can still correct the base URL.
-          console.warn("Could not parse timestamp from model response URL:", play.timestampedLink);
+          console.warn("Could not parse timestamp from model response URL:", correctedPlay.timestampedLink);
         }
-        
-        return {
-          ...play,
-          timestampedLink: correctedLink,
-        };
+        correctedPlay.timestampedLink = correctedLink;
+      }
+      
+      // 2. Normalize technicalTerms to handle potential key casing issues from the model (e.g., Term vs term).
+      if (Array.isArray(correctedPlay.technicalTerms)) {
+        correctedPlay.technicalTerms = correctedPlay.technicalTerms.map((term: any) => ({
+          term: term.term || term.Term,
+          definition: term.definition || term.Definition,
+        }));
+      } else {
+        correctedPlay.technicalTerms = [];
       }
 
-      return play;
+      return correctedPlay as PlayAnalysis;
     });
 
     return validatedPlays;
