@@ -1,14 +1,22 @@
-
 import React from 'react';
 
 export const LogoIcon: React.FC = () => (
-  <svg className="h-8 w-8 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-    <line x1="3" y1="9" x2="21" y2="9"></line>
-    <line x1="3" y1="15" x2="21" y2="15"></line>
-    <line x1="9" y1="3" x2="9" y2="21"></line>
-    <line x1="15" y1="3" x2="15" y2="21"></line>
-  </svg>
+  <div className="flex items-center space-x-3" aria-label="X-OG AI Football Analysis Logo">
+    {/* A stylized 'X' reminiscent of a play diagram */}
+    <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="logoGradient" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stopColor="#22d3ee" />
+                <stop offset="100%" stopColor="#0891b2" />
+            </linearGradient>
+        </defs>
+        <path d="M85 15 L15 85 M15 15 L85 85" stroke="url(#logoGradient)" strokeWidth="12" strokeLinecap="round" />
+    </svg>
+    <div className="flex flex-col justify-center">
+        <span className="text-3xl font-extrabold tracking-tight text-white" style={{lineHeight: '1'}}>X-OG</span>
+        <span className="text-xs font-medium text-cyan-400 tracking-widest">AI POWERED FOOTDBALL ANALYSIS</span>
+    </div>
+  </div>
 );
 
 export const ChevronLeftIcon: React.FC = () => (

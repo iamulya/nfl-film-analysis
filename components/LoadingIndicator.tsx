@@ -2,12 +2,28 @@
 import React, { useState, useEffect } from 'react';
 
 const loadingMessages = [
-  "Coach JJ is lacing up his boots...",
+  "X-OG is running diagnostics...",
   "Reviewing the game tape...",
   "Identifying key moments and critical plays...",
   "Drawing up the X's and O's...",
   "Analyzing offensive and defensive schemes...",
+  "Breaking down quarterback progressions...",
+  "Evaluating offensive line protection...",
+  "Checking for defensive tells...",
+  "Mapping out receiver routes...",
+  "Analyzing the battle in the trenches...",
+  "Spotting blown coverages and missed assignments...",
+  "Getting insights from the All-22 angle...",
+  "Putting on the coach's headset...",
+  "Highlighting the game-changing moments...",
+  "Breaking down the blitz packages...",
+  "Finding the gaps in the zone coverage...",
+  "Finalizing the scouting report...",
+  "The film doesn't lie, almost done...",
   "Preparing the final breakdown...",
+  "This analysis is going for six...",
+  "Don't worry, we're not on the play clock...",
+  "Almost ready for the two-minute drill...",
   "Just a few more seconds...",
 ];
 

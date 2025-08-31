@@ -47,11 +47,8 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-slate-900 text-gray-200 flex flex-col items-center p-4 sm:p-6 md:p-8">
       <header className="w-full max-w-5xl mx-auto flex justify-between items-center mb-8">
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center">
           <LogoIcon />
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
-            Football Film Room <span className="text-cyan-400">Analyst</span>
-          </h1>
         </div>
          {analysis && (
           <button
