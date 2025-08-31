@@ -41,7 +41,7 @@ const LoadingIndicator: React.FC = () => {
   return (
     <div className="flex flex-col items-center justify-center text-center">
       <svg
-        className="animate-spin h-12 w-12 text-cyan-400 mb-6"
+        className="animate-spin h-12 w-12 text-indigo-500 mb-6"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"

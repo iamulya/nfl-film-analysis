@@ -45,7 +45,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-slate-900 text-gray-200 flex flex-col items-center p-4 sm:p-6 md:p-8">
+    <div className="min-h-screen bg-gradient-to-b from-gray-950 to-black text-gray-200 flex flex-col items-center p-4 sm:p-6 md:p-8">
       <header className="w-full max-w-5xl mx-auto flex justify-between items-center mb-8">
         <div className="flex items-center">
           <LogoIcon />
@@ -53,7 +53,7 @@ const App: React.FC = () => {
          {analysis && (
           <button
             onClick={handleReset}
-            className="px-4 py-2 bg-cyan-600 text-white font-semibold rounded-md hover:bg-cyan-500 transition-colors duration-200"
+            className="px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-500 transition-colors duration-200"
           >
             New Analysis
           </button>

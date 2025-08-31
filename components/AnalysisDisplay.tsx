@@ -37,7 +37,7 @@ const AnalysisDisplay: React.FC<AnalysisDisplayProps> = ({ analysis }) => {
         <div className="absolute inset-y-0 left-0 z-10 flex items-center -translate-x-12">
             <button
             onClick={goToPrevious}
-            className="bg-gray-800/50 text-white rounded-full p-2 hover:bg-gray-700/70 transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500"
+            className="bg-gray-800/50 text-white rounded-full p-2 hover:bg-gray-800/70 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500"
             aria-label="Previous play"
             >
             <ChevronLeftIcon />
@@ -60,7 +60,7 @@ const AnalysisDisplay: React.FC<AnalysisDisplayProps> = ({ analysis }) => {
         <div className="absolute inset-y-0 right-0 z-10 flex items-center translate-x-12">
             <button
             onClick={goToNext}
-            className="bg-gray-800/50 text-white rounded-full p-2 hover:bg-gray-700/70 transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500"
+            className="bg-gray-800/50 text-white rounded-full p-2 hover:bg-gray-800/70 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500"
             aria-label="Next play"
             >
             <ChevronRightIcon />
@@ -73,7 +73,7 @@ const AnalysisDisplay: React.FC<AnalysisDisplayProps> = ({ analysis }) => {
             key={index}
             onClick={() => goToPlay(index)}
             className={`h-3 w-3 rounded-full transition-all duration-300 ${
-              currentPlayIndex === index ? 'bg-cyan-400 w-6' : 'bg-gray-600 hover:bg-gray-500'
+              currentPlayIndex === index ? 'bg-indigo-500 w-6' : 'bg-gray-700 hover:bg-gray-600'
             }`}
             aria-label={`Go to play ${index + 1}`}
           />

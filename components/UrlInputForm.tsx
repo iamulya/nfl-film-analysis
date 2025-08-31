@@ -28,17 +28,17 @@ const UrlInputForm: React.FC<UrlInputFormProps> = ({ onSubmit, error }) => {
           value={url}
           onChange={(e) => setUrl(e.target.value)}
           placeholder="https://www.youtube.com/watch?v=..."
-          className="flex-grow px-4 py-3 bg-gray-800 border-2 border-gray-700 rounded-md text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition-all"
+          className="flex-grow px-4 py-3 bg-gray-900 border-2 border-gray-800 rounded-md text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all"
           required
         />
         <button
           type="submit"
-          className="px-8 py-3 bg-cyan-600 text-white font-bold rounded-md hover:bg-cyan-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-cyan-500 transition-transform transform hover:scale-105"
+          className="px-8 py-3 bg-indigo-600 text-white font-bold rounded-md hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-950 focus:ring-indigo-500 transition-transform transform hover:scale-105"
         >
           Analyze
         </button>
       </form>
-      {error && <p className="text-red-400 mt-4">{error}</p>}
+      {error && <p className="text-red-500 mt-4">{error}</p>}
     </div>
   );
 };
