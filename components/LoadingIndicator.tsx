@@ -24,6 +24,16 @@ const loadingMessages = [
   "This analysis is going for six...",
   "Don't worry, we're not on the play clock...",
   "Almost ready for the two-minute drill...",
+  "Checking the depth chart for personnel packages...",
+  "Identifying critical one-on-one matchups...",
+  "Reading the quarterback's eyes and progressions...",
+  "Analyzing pivotal special teams plays...",
+  "Consulting with the virtual offensive coordinator...",
+  "Listening for audibles and hot routes at the line...",
+  "Evaluating red zone efficiency and play-calling...",
+  "This next play has trick-play potential...",
+  "Going into hurry-up offense on this analysis...",
+  "Breaking down the film like a seasoned pro...",
   "Just a few more seconds...",
 ];
 

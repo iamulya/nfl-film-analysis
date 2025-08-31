@@ -45,7 +45,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-950 to-black text-gray-200 flex flex-col items-center p-4 sm:p-6 md:p-8">
+    <div className="min-h-screen bg-black text-gray-200 flex flex-col items-center p-4 sm:p-6 md:p-8">
       <header className="w-full max-w-5xl mx-auto flex justify-between items-center mb-8">
         <div className="flex items-center">
           <LogoIcon />
@@ -68,7 +68,7 @@ const App: React.FC = () => {
         {analysis && !isLoading && <AnalysisDisplay analysis={analysis} />}
       </main>
        <footer className="w-full text-center text-gray-500 mt-12 text-sm">
-        <p>Powered by Gemini. For educational and entertainment purposes only.</p>
+        <p>Powered by Gemini.</p>
       </footer>
     </div>
   );

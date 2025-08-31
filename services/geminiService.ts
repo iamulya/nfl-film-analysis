@@ -38,6 +38,9 @@ export async function analyzeVideo(youtubeUrl: string): Promise<AnalysisResult> 
               fileUri: youtubeUrl,
             },
           },
+          {
+            text: youtubeUrl,
+          },
         ],
       },
       config: {
