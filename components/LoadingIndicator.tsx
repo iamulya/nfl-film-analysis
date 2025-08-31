@@ -33,7 +33,7 @@ const LoadingIndicator: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setMessageIndex((prevIndex) => (prevIndex + 1) % loadingMessages.length);
-    }, 2500);
+    }, 3500);
 
     return () => clearInterval(interval);
   }, []);
