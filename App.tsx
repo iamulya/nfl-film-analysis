@@ -68,7 +68,7 @@ const App: React.FC = () => {
         {analysis && !isLoading && <AnalysisDisplay analysis={analysis} />}
       </main>
        <footer className="w-full text-center text-gray-500 mt-12 text-sm">
-        <p>Powered by Gemini.</p>
+        <p>Created by <a href="https://www.linkedin.com/in/amulya-bhatia-01627a42/" target="_blank" rel="noopener noreferrer" className="text-indigo-400 hover:text-indigo-300 hover:underline">Amulya Bhatia</a></p>
       </footer>
     </div>
   );
