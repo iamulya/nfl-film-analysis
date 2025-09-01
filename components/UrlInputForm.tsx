@@ -25,7 +25,7 @@ const UrlInputForm: React.FC<UrlInputFormProps> = ({ onSubmit, error }) => {
         Enter the Gridiron
       </h2>
       <p className="text-lg text-gray-400 mb-8">
-        Provide a Football game's YouTube URL and let X-OG break down the film.
+        Provide a Football game's YouTube URL and let X-OG provide <b>detailed breakdown</b> of significant plays including <b>Pre-snap Analysis</b>, <b>Offensive/Defensive breakdown</b>, key to success/failure of the play and <b>definitions of the technical terms</b> used in the play (for e.g. <b>Cover-2 defense, Wheel Route</b> etc.)
       </p>
       <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
         <input
